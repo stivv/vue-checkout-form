@@ -1,26 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <h2>Responsive Checkout Form</h2>
+  <div class="row">
+    <checkout-form />
+    <cart />
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Cart from "./components/Cart.vue";
+import CheckoutForm from "./components/CheckoutForm.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Cart,
+    CheckoutForm,
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
