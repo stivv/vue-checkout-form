@@ -1,5 +1,5 @@
 <template>
-  <h2>Responsive Checkout Form</h2>
+  <h2>Checkout Form</h2>
   <div class="row">
     <checkout-form />
     <cart />
