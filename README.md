@@ -1,7 +1,7 @@
 # Simple Checkout Form with vue
-```
+
 A simple checkout form with vue and vuex for state management.
-```
+
 
 ## Project setup
 ```
