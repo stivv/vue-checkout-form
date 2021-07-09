@@ -8,13 +8,17 @@
       <i class="fa fa-cc-mastercard" style="color: red; margin-right: 3px"></i>
       <i class="fa fa-cc-discover" style="color: orange"></i>
     </div>
-    <form-sections :form-inputs="formInputs" />
+    <form-sections
+      :form-inputs="formInputs"
+      @formData="$emit('formData', { payment_info: { ...$event } })"
+    />
   </div>
 </template>
 
 <script>
 import FormSections from "./FormSections.vue";
 export default {
+  emits: ["formData"],
   data() {
     return {
       formInputs: [

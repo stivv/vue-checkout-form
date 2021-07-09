@@ -6,6 +6,7 @@
       :name="input.name"
       :label="input.label"
       :class="input.class"
+      v-model="form[input.name]"
     >
       <template #labelIcon>
         <i class="fa" :class="input.labelIcon"></i>
@@ -17,6 +18,7 @@
           :type="row.type || 'text'"
           :name="row.name"
           :label="row.label"
+          v-model="form[row.name]"
         >
           <template #labelIcon>
             <i :class="row.labelIcon"></i>
@@ -30,7 +32,21 @@
 <script>
 import FormInput from "./FormInput.vue";
 export default {
+  emits: ["formData"],
   components: { FormInput },
   props: ["formInputs"],
+  data() {
+    return {
+      form: {},
+    };
+  },
+  watch: {
+    form: {
+      handler(val) {
+        this.$emit("formData", val);
+      },
+      deep: true,
+    },
+  },
 };
 </script>

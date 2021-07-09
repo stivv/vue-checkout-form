@@ -1,7 +1,7 @@
 <template>
   <div class="col-25">
     <div class="container">
-      <button @click="addProduct">Add product</button>
+      <button v-if="actionBtns" @click="addProduct">Add product</button>
       <h4>
         Cart
         <span class="price" style="color: black">
@@ -13,7 +13,11 @@
         <a href="#">{{ product.name }}</a>
         <span class="price">
           ${{ product.price }}
-          <button style="margin-left: 5px" @click="removeProduct(idx)">
+          <button
+            v-if="actionBtns"
+            style="margin-left: 5px"
+            @click="removeProduct(idx)"
+          >
             X
           </button>
         </span>
@@ -32,6 +36,12 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  props: {
+    actionBtns: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
     ...mapGetters({
       products: "cart/getProducts",

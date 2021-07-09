@@ -1,13 +1,17 @@
 <template>
   <div class="col-50">
     <h3>Billing Address</h3>
-    <form-sections :form-inputs="formInputs" />
+    <form-sections
+      :form-inputs="formInputs"
+      @formData="$emit('formData', { billing_address: { ...$event } })"
+    />
   </div>
 </template>
 
 <script>
 import FormSections from "./FormSections.vue";
 export default {
+  emits: ["formData"],
   data() {
     return {
       formInputs: [

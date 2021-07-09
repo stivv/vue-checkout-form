@@ -9,6 +9,7 @@
     :id="name"
     :name="name"
     placeholder=""
+    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
