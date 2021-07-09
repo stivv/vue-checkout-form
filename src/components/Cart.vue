@@ -1,7 +1,7 @@
 <template>
   <div class="col-25">
     <div class="container">
-      <button v-if="actionBtns" @click="addProduct">Add product</button>
+      <button v-if="actions" @click="addProduct">Add product</button>
       <h4>
         Cart
         <span class="price" style="color: black">
@@ -14,7 +14,7 @@
         <span class="price">
           ${{ product.price }}
           <button
-            v-if="actionBtns"
+            v-if="actions"
             style="margin-left: 5px"
             @click="removeProduct(idx)"
           >
@@ -33,26 +33,23 @@
   </div>
 </template>
 
-<script>
-import { mapActions, mapGetters } from "vuex";
-export default {
-  props: {
-    actionBtns: {
-      type: Boolean,
-      default: true,
-    },
+<script setup>
+import { computed, defineProps } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const props = defineProps({
+  actionBtns: {
+    type: Boolean,
+    default: true,
   },
-  computed: {
-    ...mapGetters({
-      products: "cart/getProducts",
-      totalPrice: "cart/getProductsTotal",
-    }),
-  },
-  methods: {
-    ...mapActions({
-      addProduct: "cart/addProduct",
-      removeProduct: "cart/removeProduct",
-    }),
-  },
-};
+});
+
+const products = computed(() => store.getters["cart/getProducts"]);
+const totalPrice = computed(() => store.getters["cart/getProductsTotal"]);
+const actions = computed(() => props.actionBtns);
+
+const addProduct = () => store.dispatch("cart/addProduct");
+const removeProduct = (idx) => store.dispatch("cart/removeProduct", idx);
 </script>

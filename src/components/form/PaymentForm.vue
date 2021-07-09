@@ -15,25 +15,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import FormSections from "./FormSections.vue";
-export default {
-  emits: ["formData"],
-  data() {
-    return {
-      formInputs: [
-        { label: "Name on Card", name: "cardname" },
-        { label: "Credit card number", name: "cardnumber" },
-        { label: "Exp Month", name: "expmonth" },
-        {
-          row: [
-            { label: "Exp Year", name: "expyear", class: "col-50" },
-            { label: "CVV", name: "cvv", class: "col-50" },
-          ],
-        },
-      ],
-    };
+import { defineEmits } from "vue";
+
+defineEmits(["formData"]);
+
+const formInputs = [
+  { label: "Name on Card", name: "cardname" },
+  { label: "Credit card number", name: "cardnumber" },
+  { label: "Exp Month", name: "expmonth" },
+  {
+    row: [
+      { label: "Exp Year", name: "expyear", class: "col-50" },
+      { label: "CVV", name: "cvv", class: "col-50" },
+    ],
   },
-  components: { FormSections },
-};
+];
 </script>

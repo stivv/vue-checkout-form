@@ -21,25 +21,29 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { reactive, defineEmits } from "vue";
 import BillingAddress from "./form/BillingAddress.vue";
 import PaymentForm from "./form/PaymentForm.vue";
-export default {
-  emits: ["submitted"],
-  data() {
-    return {
-      form: {},
-    };
-  },
-  components: { BillingAddress, PaymentForm },
-  methods: {
-    formData(data) {
-      Object.assign(this.form, data);
-    },
-    checkout() {
-      if (Object.keys(this.form).length) this.$emit("submitted", this.form);
-      else alert("Please complete the form");
-    },
-  },
+
+const emit = defineEmits(["submitted"]);
+
+const form = reactive({});
+
+const formData = (data) => {
+  Object.assign(form, { ...data });
+};
+
+const checkout = () => {
+  if (
+    Object.keys(form).length &&
+    Object.keys(form["billing_address"]).length > 5 &&
+    Object.keys(form["payment_info"]).length > 4
+  ) {
+    emit("submitted", form);
+    return;
+  }
+
+  alert("Please complete the form");
 };
 </script>

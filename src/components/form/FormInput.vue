@@ -13,12 +13,14 @@
   />
 </template>
 
-<script>
-export default {
-  props: {
-    name: String,
-    label: String,
-    placeholder: String,
-  },
-};
+<script setup>
+import { defineEmits, defineProps } from "vue";
+
+defineEmits(["update:modelValue"]);
+
+defineProps({
+  name: String,
+  label: String,
+  placeholder: String,
+});
 </script>

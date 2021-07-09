@@ -29,24 +29,16 @@
   </template>
 </template>
 
-<script>
+<script setup>
 import FormInput from "./FormInput.vue";
-export default {
-  emits: ["formData"],
-  components: { FormInput },
-  props: ["formInputs"],
-  data() {
-    return {
-      form: {},
-    };
-  },
-  watch: {
-    form: {
-      handler(val) {
-        this.$emit("formData", val);
-      },
-      deep: true,
-    },
-  },
-};
+import { defineEmits, defineProps, reactive, watch } from "vue";
+
+const emit = defineEmits(["formData"]);
+
+defineProps(["formInputs"]);
+
+const form = reactive({})
+
+watch(form, (val) => emit("formData", val), { deep: true })
+
 </script>
