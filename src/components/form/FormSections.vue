@@ -37,8 +37,7 @@ const emit = defineEmits(["formData"]);
 
 defineProps(["formInputs"]);
 
-const form = reactive({})
+const form = reactive({});
 
-watch(form, (val) => emit("formData", val), { deep: true })
-
+watch(form, (val) => emit("formData", val), { deep: true });
 </script>
